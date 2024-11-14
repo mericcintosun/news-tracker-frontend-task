@@ -25,7 +25,7 @@ self.addEventListener("push", function (event) {
     const options = {
       body: data.message || "Varsayılan mesaj",
       data: {
-        url: "http:/localhost:3000", // Bildirim tıklandığında gidilecek URL
+        url: "/", 
       },
     };
 

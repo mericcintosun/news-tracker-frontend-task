@@ -1,3 +1,5 @@
+// src/components/NotificationButton.jsx
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,10 +9,9 @@ const NotificationButton = () => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
-  const [permission, setPermission] = useState("default"); // Başlangıç durumu
+  const [permission, setPermission] = useState("default");
 
   useEffect(() => {
-    // Sadece tarayıcıda çalışmasını sağlamak için
     if (typeof window !== "undefined" && "Notification" in window) {
       setPermission(Notification.permission);
       if (Notification.permission === "granted") {
@@ -28,7 +29,7 @@ const NotificationButton = () => {
         console.log("Mevcut abonelik bulundu:", existingSub);
       } else {
         console.log("Mevcut abonelik bulunamadı, yeni abonelik oluşturulacak.");
-        await subscribeUser(); // Yeni abonelik oluştur
+        await subscribeUser();
       }
     } catch (err) {
       console.error("Abonelik alınırken hata oluştu:", err);
@@ -67,6 +68,21 @@ const NotificationButton = () => {
 
       setSubscription(sub);
       console.log("Yeni abonelik oluşturuldu:", sub);
+
+      // Aboneliği sunucuya gönder
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sub),
+      });
+
+      if (response.ok) {
+        console.log("Abonelik sunucuya başarıyla gönderildi.");
+      } else {
+        console.error("Abonelik sunucuya gönderilemedi.");
+      }
     } catch (err) {
       console.error("Abonelik oluşturulurken hata oluştu:", err);
       setError("Abonelik oluşturulamadı.");
