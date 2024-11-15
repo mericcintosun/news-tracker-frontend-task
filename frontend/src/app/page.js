@@ -2,7 +2,6 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchNews } from "@/lib/fetchNews";
-import NotificationButton from "@/components/NotificationButton";
 export default function Home() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", "latest"],
@@ -14,7 +13,6 @@ export default function Home() {
     <>
       <div>
         <h2>En Son Haberler</h2>
-        <NotificationButton />
         {isLoading && <p>Yükleniyor...</p>}
         {error && <p>Bir hata oluştu: {error.message}</p>}
         {data && (
