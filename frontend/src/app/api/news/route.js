@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 import { filterArticles } from "@/lib/filterArticles";
 
-const API_KEY = process.env.NEXT_PUBLIC_NEWSAPI_KEY;
+const API_KEY = process.env.NEWSAPI_KEY;
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
