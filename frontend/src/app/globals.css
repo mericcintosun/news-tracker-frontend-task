@@ -312,6 +312,12 @@ select:focus {
   margin-top: 10px;
 }
 
+/* Footer */
+footer {
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
 
 /* Mobil uyumlu tasarım */
 @media (max-width: 768px) {

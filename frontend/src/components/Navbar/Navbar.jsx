@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
-import ThemeSwitcher from "../ThemeSwitcher";
 export default function Navbar() {
   return (
     <header className={styles.siteHeader}>
@@ -33,7 +32,6 @@ export default function Navbar() {
           </li>
           <li className={styles.navbarItem}>
             {" "}
-            <ThemeSwitcher />
           </li>
         </ul>
       </nav>
