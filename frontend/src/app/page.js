@@ -1,5 +1,7 @@
 "use client";
 
+import NewsPoller from "@/components/NewsPoller";
+import NotificationPermission from "@/components/NotificationPermission";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
@@ -25,6 +27,9 @@ export default function Home() {
   return (
     <>
       <div>
+        <h1>Yeni Haberler</h1>
+        <NotificationPermission />
+        <NewsPoller />
         <h2>En Son Haberler</h2>
         {isLoading && <p>Yükleniyor...</p>}
         {error && <p>Bir hata oluştu: {error.message}</p>}
