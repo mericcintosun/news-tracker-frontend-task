@@ -1,8 +1,9 @@
 export const filterArticles = (articles) => {
   return articles.filter(
     (article) =>
-      article.source &&
-      article.source.name &&
-      article.source.name !== "[Removed]"
+      article.source && // Kaynağın mevcut olup olmadığını kontrol et
+      article.source.name && // Kaynak isminin mevcut olup olmadığını kontrol et
+      article.source.name !== "[Removed]" && // İstenmeyen kaynakları filtrele
+      article.urlToImage // Resim URL'sinin mevcut olup olmadığını kontrol et
   );
 };

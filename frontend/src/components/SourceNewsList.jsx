@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 
 export default function SourceNewsList({ source }) {
   const fetchNews = async () => {
@@ -35,6 +36,25 @@ export default function SourceNewsList({ source }) {
               {article.title}
             </a>
             <p>{article.description}</p>
+            <p>{article.author}</p>
+            <p>
+              Yayınlanma Tarihi:{" "}
+              {new Date(article.publishedAt).toLocaleDateString("tr-TR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+            <p>{article.source.name}</p>
+            <p>{article.urlToImage}</p>
+            <Image
+              src={article.urlToImage}
+              alt={article.title}
+              width={200}
+              height={200}
+            />
           </li>
         ))}
       </ul>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-
+import Image from "next/image";
 export default function CategoryNewsList({ category }) {
   const fetchCategoryNews = async () => {
     const params = new URLSearchParams({ category });
@@ -14,13 +14,13 @@ export default function CategoryNewsList({ category }) {
     }
 
     const data = await res.json();
-    return data.articles; // route.js tarafından dönen `articles` verisi
+    return data.articles;
   };
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", category],
     queryFn: fetchCategoryNews,
-    staleTime: 1000 * 60 * 60 * 10, // 10 saat boyunca önbellekte tutar
+    staleTime: 1000 * 60 * 60 * 10,
   });
 
   if (isLoading) return <p>{category} haberleri yükleniyor...</p>;
@@ -41,6 +41,24 @@ export default function CategoryNewsList({ category }) {
               {article.title}
             </a>
             <p>{article.description}</p>
+            <p>{article.author}</p>
+            <p>
+              Yayınlanma Tarihi:{" "}
+              {new Date(article.publishedAt).toLocaleDateString("tr-TR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+            <p>{article.source.name}</p>
+            <Image
+              src={article.urlToImage}
+              alt={article.title}
+              width={200}
+              height={200}
+            />
           </li>
         ))}
       </ul>
