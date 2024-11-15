@@ -25,21 +25,19 @@ export async function GET(req) {
   try {
     const response = await axios.get("https://newsapi.org/v2/top-headlines", {
       params,
+      timeout: 5000,  
     });
 
     const articles = response.data.articles;
-
     const filteredArticles = filterArticles(articles);
 
     return NextResponse.json({ articles: filteredArticles });
   } catch (error) {
-    console.error(
-      "Error Response Data:",
-      error.response?.data || error.message
-    );
+    console.error("Error Response Data:", error);
+    console.error("Full Error Details:", error.response?.data || error);
 
     return NextResponse.json(
-      { error: "Haberler alınırken bir hata oluştu." },
+      { error: "Haberler alınırken bir hata oluştu.", details: error.message },
       { status: 500 }
     );
   }
