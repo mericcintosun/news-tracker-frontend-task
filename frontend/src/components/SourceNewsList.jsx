@@ -1,12 +1,19 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchNews } from "@/lib/fetchNews";
 
 export default function SourceNewsList({ source }) {
+  const fetchNews = async () => {
+    const params = new URLSearchParams({ sources: source });
+    const res = await fetch(`/api/news?${params.toString()}`);
+    if (!res.ok) throw new Error("Veri alınamadı");
+    const data = await res.json();
+    return data.articles;
+  };
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", source],
-    queryFn: () => fetchNews({ sources: [source] }),
+    queryFn: fetchNews,
     staleTime: 1000 * 60 * 60 * 10,
   });
 

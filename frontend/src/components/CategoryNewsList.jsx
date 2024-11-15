@@ -1,13 +1,26 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchNews } from "@/lib/fetchNews";
 
 export default function CategoryNewsList({ category }) {
+  const fetchCategoryNews = async () => {
+    const params = new URLSearchParams({ category });
+    const res = await fetch(`/api/news?${params.toString()}`, {
+      method: "GET",
+    });
+
+    if (!res.ok) {
+      throw new Error("Veri alınamadı");
+    }
+
+    const data = await res.json();
+    return data.articles; // route.js tarafından dönen `articles` verisi
+  };
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", category],
-    queryFn: () => fetchNews({ category }),
-    staleTime: 1000 * 60 * 60 * 10,
+    queryFn: fetchCategoryNews,
+    staleTime: 1000 * 60 * 60 * 10, // 10 saat boyunca önbellekte tutar
   });
 
   if (isLoading) return <p>{category} haberleri yükleniyor...</p>;

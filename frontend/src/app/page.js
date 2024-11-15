@@ -1,12 +1,25 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchNews } from "@/lib/fetchNews";
+
 export default function Home() {
+  const fetchLatestNews = async () => {
+    const res = await fetch(`/api/news`, {
+      method: "GET",
+    });
+
+    if (!res.ok) {
+      throw new Error("Veri alınamadı");
+    }
+
+    const data = await res.json();
+    return data.articles; // route.js tarafından dönen `articles` verisi
+  };
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", "latest"],
-    queryFn: () => fetchNews(),
-    staleTime: 1000 * 60 * 60 * 10, 
+    queryFn: fetchLatestNews,
+    staleTime: 1000 * 60 * 60 * 10, // 10 saat boyunca önbellek tutma
   });
 
   return (
