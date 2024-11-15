@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import { createRequire } from "module";
-
-const require = createRequire(import.meta.url);
-const webPush = require("web-push");
+import webPush from "web-push";
 
 const vapidKeys = {
   publicKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
