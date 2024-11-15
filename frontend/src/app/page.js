@@ -1,9 +1,11 @@
 "use client";
 
+import NewsChart from "@/components/NewsChart/NewsChart";
 import NewsPoller from "@/components/NewsPoller";
 import NotificationPermission from "@/components/NotificationPermission";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+
 
 export default function Home() {
   const fetchLatestNews = async () => {
@@ -29,6 +31,8 @@ export default function Home() {
     <>
       <div>
         <NotificationPermission />
+
+        {data && <NewsChart articles={data} />}
         <h1>Yeni Haberler</h1>
 
         <NewsPoller />
