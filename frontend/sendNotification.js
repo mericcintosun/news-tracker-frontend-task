@@ -1,8 +1,8 @@
 // sendNotification.js
 
-const webPush = require("web-push");
-const fs = require("fs");
-const path = require("path");
+import webPush from "web-push";
+import fs from "fs";
+import path from "path";
 
 const vapidKeys = {
   publicKey:
