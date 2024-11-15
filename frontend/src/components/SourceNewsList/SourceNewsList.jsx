@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import styles from "./SourceNewsList.module.css"; // CSS module import
 
 export default function SourceNewsList({ source }) {
   const fetchNews = async () => {
@@ -18,26 +19,37 @@ export default function SourceNewsList({ source }) {
     staleTime: 1000 * 60 * 60 * 10,
   });
 
-  if (isLoading) return <p>{source} haberleri yükleniyor...</p>;
+  if (isLoading)
+    return (
+      <p className={styles.loadingMessage}>{source} haberleri yükleniyor...</p>
+    );
+
   if (error)
     return (
-      <p>
+      <p className={styles.errorMessage}>
         {source} haberleri yüklenirken bir hata oluştu: {error.message}
       </p>
     );
 
   return (
-    <div>
-      <h3>{source.toUpperCase()}</h3>
-      <ul>
+    <div className={styles.sourceNewsContainer}>
+      <h3 className={styles.sourceTitle}>{source.toUpperCase()}</h3>
+      <ul className={styles.sourceNewsList}>
         {data.map((article, index) => (
-          <li key={index}>
-            <a href={article.url} target="_blank" rel="noopener noreferrer">
+          <li key={index} className={styles.sourceNewsItem}>
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sourceNewsLink}
+            >
               {article.title}
             </a>
-            <p>{article.description}</p>
-            <p>{article.author}</p>
-            <p>
+            <p className={styles.sourceNewsDescription}>
+              {article.description}
+            </p>
+            <p className={styles.sourceNewsAuthor}>{article.author}</p>
+            <p className={styles.sourceNewsPublishedDate}>
               Yayınlanma Tarihi:{" "}
               {new Date(article.publishedAt).toLocaleDateString("tr-TR", {
                 day: "2-digit",
@@ -47,13 +59,13 @@ export default function SourceNewsList({ source }) {
                 minute: "2-digit",
               })}
             </p>
-            <p>{article.source.name}</p>
-            <p>{article.urlToImage}</p>
+            <p className={styles.sourceNewsSource}>{article.source.name}</p>
             <Image
               src={article.urlToImage}
               alt={article.title}
               width={200}
               height={200}
+              className={styles.sourceNewsImage}
             />
           </li>
         ))}

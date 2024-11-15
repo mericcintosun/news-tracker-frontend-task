@@ -1,0 +1,122 @@
+/* General Styles */
+.categoryArticleContainer {
+  padding: 20px;
+  background-color: var(--secondary-bg-color);
+  border-radius: 8px;
+}
+
+.categoryTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-text-color);
+  margin-bottom: 20px;
+}
+
+.articleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.articleItem {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--primary-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.articleItem:hover {
+  transform: scale(1.02);
+}
+
+.articleItem a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--link-color);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.articleItem a:hover {
+  text-decoration: underline;
+}
+
+.articleDescription {
+  margin: 10px 0;
+  color: var(--secondary-text-color);
+}
+
+.articleAuthor,
+.articleDate,
+.articleSource {
+  margin: 5px 0;
+  color: var(--muted-text-color);
+  font-size: 0.9rem;
+}
+
+.articleImage {
+  border-radius: 8px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.loadingText,
+.errorText {
+  font-size: 1.1rem;
+  color: var(--primary-text-color);
+  margin: 20px 0;
+}
+
+.loadingText {
+  color: var(--hover-link-color);
+}
+
+.errorText {
+  color: var(--error-color);
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  .categoryArticleContainer {
+    background-color: var(--dark-secondary-bg-color);
+  }
+
+  .categoryTitle {
+    color: var(--dark-primary-text-color);
+  }
+
+  .articleItem {
+    background-color: var(--dark-primary-bg-color);
+    border: 1px solid var(--dark-border-color);
+  }
+
+  .articleItem a {
+    color: var(--dark-link-color);
+  }
+
+  .articleItem a:hover {
+    color: var(--dark-hover-link-color);
+  }
+
+  .articleDescription {
+    color: var(--dark-secondary-text-color);
+  }
+
+  .articleAuthor,
+  .articleDate,
+  .articleSource {
+    color: var(--dark-muted-text-color);
+  }
+
+  .loadingText {
+    color: var(--dark-hover-link-color);
+  }
+
+  .errorText {
+    color: var(--dark-error-color);
+  }
+}

@@ -1,0 +1,149 @@
+/* mixins.css */
+
+/* 1. Flexbox helper mixin */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 2. Mobile-first responsive layout */
+.responsive {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .responsive {
+    flex-direction: row;
+  }
+}
+
+/* 3. Full-width container */
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 4. Card with shadow */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+}
+
+/* 5. Gradient background */
+.gradient-bg {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+/* 6. Border-radius utility */
+.rounded {
+  border-radius: 8px;
+}
+
+.rounded-sm {
+  border-radius: 4px;
+}
+
+.rounded-lg {
+  border-radius: 16px;
+}
+
+/* 7. Shadow utilities */
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 8. Flexbox row with gaps */
+.flex-row {
+  display: flex;
+  gap: 16px;
+}
+
+.flex-row-wrap {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* 9. Hide on mobile */
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block;
+  }
+}
+
+/* 10. Center text */
+.text-center {
+  text-align: center;
+}
+
+/* 11. Text color utilities */
+.text-primary {
+  color: #0070f3;
+}
+
+.text-secondary {
+  color: #888;
+}
+
+.text-muted {
+  color: #ccc;
+}
+
+/* 12. Box sizing */
+.box-sizing {
+  box-sizing: border-box;
+}
+
+/* 13. Padding helper */
+.padding-vertical {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.padding-horizontal {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.padding-all {
+  padding: 20px;
+}
+
+/* 14. Margin helper */
+.margin-vertical {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.margin-horizontal {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.margin-all {
+  margin: 20px;
+}
+
+/* 15. Max-width */
+.max-width {
+  max-width: 1200px;
+  margin: 0 auto;
+}

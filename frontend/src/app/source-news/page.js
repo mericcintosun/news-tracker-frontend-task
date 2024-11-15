@@ -3,8 +3,8 @@
 import { useState } from "react";
 import NewsChart from "@/components/NewsChart/NewsChart";
 import { useQuery } from "@tanstack/react-query";
-import SourceNewsList from "@/components/SourceNewsList";
-
+import SourceNewsList from "@/components/SourceNewsList/SourceNewsList";
+import "./SourceNewsPage.css";
 const sources = [
   "bbc-news",
   "cnn",
@@ -38,20 +38,31 @@ export default function SourceNewsPage() {
   });
 
   return (
-    <div>
-      {isLoading && <p>Yükleniyor...</p>}
-      {error && <p>Bir hata oluştu: {error.message}</p>}
-      {data && <NewsChart articles={data} />}
+    <div className="source-news-container flex-center padding-all">
+      {isLoading && <p className="loading-text text-center">Yükleniyor...</p>}
+      {error && (
+        <p className="error-text text-center">
+          Bir hata oluştu: {error.message}
+        </p>
+      )}
+      {data && (
+        <NewsChart
+          articles={data}
+          className="source-news-chart rounded shadow-md padding-all max-width"
+        />
+      )}
 
-      <h1>Kaynağa Göre En Son Haberler</h1>
+      <h1 className="source-news-heading text-center">
+        Kaynağa Göre En Son Haberler
+      </h1>
 
-      <nav className="navbar">
-        <ul className="navbar-list">
+      <nav className="navbar flex-row gap-16 padding-vertical">
+        <ul className="navbar-list flex-row gap-16">
           {sources.map((source) => (
             <li
               key={source}
-              className={`navbar-item ${
-                activeSource === source ? "active" : ""
+              className={`navbar-item rounded-sm shadow-sm padding-horizontal ${
+                activeSource === source ? "active text-primary" : "text-muted"
               }`}
               onClick={() => setActiveSource(source)}
             >
@@ -64,7 +75,10 @@ export default function SourceNewsPage() {
         </ul>
       </nav>
 
-      <SourceNewsList source={activeSource} />
+      <SourceNewsList
+        source={activeSource}
+        className="source-news-list flex-row-wrap padding-all"
+      />
     </div>
   );
 }

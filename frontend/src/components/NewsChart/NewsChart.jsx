@@ -13,6 +13,8 @@ import {
 } from "chart.js";
 import { groupArticlesByHour } from "@/utils/formatDate";
 import { filterArticles } from "@/lib/filterArticles";
+import styles from "./NewsChart.module.css"; // CSS Modülünü import et
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -98,15 +100,11 @@ const NewsChart = ({ articles }) => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        height: "400px",
-        margin: "0 auto",
-        padding: "20px",
-      }}
-    >
-      <Bar data={data} options={options} />
+    <div className={styles.newsChartContainer}>
+      {" "}
+      {/* CSS modülünü burada kullan */}
+      <Bar data={data} options={options} className={styles.newsChart} />{" "}
+      {/* CSS modülünü burada kullan */}
     </div>
   );
 };

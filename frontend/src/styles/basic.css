@@ -1,0 +1,153 @@
+/* basic.css */
+
+/* Global reset ve varsayılan ayarlar */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+
+/* Flexbox container düzeni */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+/* Genel başlık stilleri */
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+/* Butonlar */
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Formlar */
+input,
+textarea,
+select {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Kartlar ve kutular */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.card-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  font-size: 16px;
+}
+
+.card-footer {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Footer */
+footer {
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Mobil uyumlu tasarım */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+}

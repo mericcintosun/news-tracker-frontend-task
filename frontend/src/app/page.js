@@ -1,8 +1,8 @@
 "use client";
 
 import NewsChart from "@/components/NewsChart/NewsChart";
-import NewsPoller from "@/components/NewsPoller";
-import NotificationPermission from "@/components/NotificationPermission";
+import NewsPoller from "@/components/NewsPoller/NewsPoller";
+import NotificationPermission from "@/components/NotificationPermission/NotificationPermission";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
@@ -28,26 +28,49 @@ export default function Home() {
 
   return (
     <>
-      <div>
-        <NotificationPermission />
+      <div className="news-container padding-all flex-center">
+        <NotificationPermission className="notification-permission padding-all rounded shadow-md" />
 
-        {data && <NewsChart articles={data} />}
-        <h1>Yeni Haberler</h1>
-
-        <NewsPoller />
-        <h2>En Son Haberler</h2>
-        {isLoading && <p>Yükleniyor...</p>}
-        {error && <p>Bir hata oluştu: {error.message}</p>}
         {data && (
-          <ul>
+          <NewsChart
+            articles={data}
+            className="news-chart rounded shadow-md padding-all max-width"
+          />
+        )}
+
+        <h1 className="headline text-center">Yeni Haberler</h1>
+
+        <NewsPoller className="news-poller rounded shadow-md padding-all" />
+
+        <h2 className="subheadline text-center">En Son Haberler</h2>
+
+        {isLoading && <p className="loading-text text-center">Yükleniyor...</p>}
+        {error && (
+          <p className="error-text text-center">
+            Bir hata oluştu: {error.message}
+          </p>
+        )}
+
+        {data && (
+          <ul className="news-list flex-column gap-16">
             {data.map((article, index) => (
-              <li key={index}>
-                <a href={article.url} target="_blank" rel="noopener noreferrer">
+              <li
+                key={index}
+                className="news-item flex-row gap-16 rounded-sm shadow-sm padding-all"
+              >
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news-link text-primary"
+                >
                   {article.title}
                 </a>
-                <p>{article.description}</p>
-                <p>{article.author}</p>
-                <p>
+                <p className="news-description text-muted">
+                  {article.description}
+                </p>
+                <p className="news-author text-muted">{article.author}</p>
+                <p className="news-date text-muted">
                   Yayınlanma Tarihi:{" "}
                   {new Date(article.publishedAt).toLocaleDateString("tr-TR", {
                     day: "2-digit",
@@ -57,19 +80,21 @@ export default function Home() {
                     minute: "2-digit",
                   })}
                 </p>
-                <p>{article.source.name}</p>
+                <p className="news-source text-muted">{article.source.name}</p>
                 <Image
                   src={article.urlToImage}
                   alt={article.title}
                   width={200}
                   height={200}
+                  className="news-image rounded-sm"
                 />
-                <p>
+                <p className="news-content text-muted">
                   {article.content?.split(" [+")[0]}{" "}
                   <a
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="continue-reading text-primary"
                   >
                     Devamını oku
                   </a>

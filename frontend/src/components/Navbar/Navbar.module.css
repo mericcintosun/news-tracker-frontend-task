@@ -1,0 +1,49 @@
+/* General Styles */
+.siteHeader {
+  background-color: var(--primary-bg-color);
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbarList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarItem {
+  margin: 0 15px;
+}
+
+.navbarLink {
+  color: var(--primary-text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.navbarLink:hover {
+  text-decoration: underline;
+  color: var(--hover-link-color);
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  .siteHeader {
+    background-color: var(--dark-primary-bg-color);
+  }
+
+  .navbarLink {
+    color: var(--dark-primary-text-color);
+  }
+
+  .navbarLink:hover {
+    color: var(--dark-hover-link-color);
+  }
+}

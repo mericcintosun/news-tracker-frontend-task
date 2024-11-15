@@ -1,0 +1,112 @@
+/* General Styles */
+.sourceNewsContainer {
+  padding: 20px;
+  background-color: var(--secondary-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sourceTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-text-color);
+  margin-bottom: 20px;
+}
+
+.sourceNewsList {
+  list-style: none;
+  padding: 0;
+}
+
+.sourceNewsItem {
+  background-color: var(--primary-bg-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sourceNewsItem:hover {
+  transform: scale(1.02);
+}
+
+.sourceNewsLink {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sourceNewsLink:hover {
+  color: var(--hover-link-color);
+}
+
+.sourceNewsDescription {
+  font-size: 14px;
+  color: var(--secondary-text-color);
+  margin: 10px 0;
+}
+
+.sourceNewsAuthor,
+.sourceNewsPublishedDate,
+.sourceNewsSource {
+  font-size: 12px;
+  color: var(--muted-text-color);
+}
+
+.sourceNewsImage {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.loadingMessage,
+.errorMessage {
+  font-size: 16px;
+  color: var(--error-color);
+}
+
+.errorMessage {
+  color: var(--error-color);
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  .sourceNewsContainer {
+    background-color: var(--dark-secondary-bg-color);
+  }
+
+  .sourceTitle {
+    color: var(--dark-primary-text-color);
+  }
+
+  .sourceNewsItem {
+    background-color: var(--dark-primary-bg-color);
+    border: 1px solid var(--dark-border-color);
+  }
+
+  .sourceNewsLink {
+    color: var(--dark-link-color);
+  }
+
+  .sourceNewsLink:hover {
+    color: var(--dark-hover-link-color);
+  }
+
+  .sourceNewsDescription {
+    color: var(--dark-secondary-text-color);
+  }
+
+  .sourceNewsAuthor,
+  .sourceNewsPublishedDate,
+  .sourceNewsSource {
+    color: var(--dark-muted-text-color);
+  }
+
+  .loadingMessage,
+  .errorMessage {
+    color: var(--dark-error-color);
+  }
+}
