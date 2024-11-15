@@ -27,15 +27,15 @@ const NewsChart = ({ articles }) => {
   const hoursCount = groupArticlesByHour(filteredArticles);
 
   const data = {
-    labels: Array.from({ length: 24 }, (_, i) => `${i}:00 - ${i + 1}:00`), // 0-23 saat dilimleri
+    labels: Array.from({ length: 24 }, (_, i) => `${i}:00 - ${i + 1}:00`),
     datasets: [
       {
         label: "Haber Sayısı",
         data: hoursCount,
-        backgroundColor: "rgba(54, 162, 235, 0.8)", // Daha belirgin bir mavi ton
+        backgroundColor: "rgba(54, 162, 235, 0.8)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 2,
-        hoverBackgroundColor: "rgba(75, 192, 192, 0.9)", // Hover durumunda renklendirme
+        hoverBackgroundColor: "rgba(75, 192, 192, 0.9)",
         hoverBorderColor: "rgba(75, 192, 192, 1)",
       },
     ],
@@ -43,7 +43,7 @@ const NewsChart = ({ articles }) => {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false, // Grafik kutusuna uyması için oran ayarlandı
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,

@@ -5,11 +5,17 @@ import { filterArticles } from "@/lib/filterArticles";
 export async function GET(req) {
   const API_KEY = process.env.NEWSAPI_KEY;
 
-  console.log("NEWSAPI_KEY:", API_KEY ? "Var" : "Yok");
-
   if (!API_KEY) {
     console.error("NEWSAPI_KEY ortam değişkeni bulunamadı.");
-    return NextResponse.json({ error: "API anahtarı eksik." }, { status: 500 });
+    return NextResponse.json(
+      { error: "API anahtarı eksik." },
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 
   const { searchParams } = new URL(req.url);
@@ -27,15 +33,16 @@ export async function GET(req) {
     params.category = category;
   }
 
-  console.log("Request Params:", params);
-
   try {
     const response = await axios.get("https://newsapi.org/v2/top-headlines", {
       params,
       timeout: 5000,
     });
 
-    const articles = response.data.articles;
+    const articles = Array.isArray(response.data.articles)
+      ? response.data.articles
+      : [];
+
     const filteredArticles = filterArticles(articles);
 
     return NextResponse.json({ articles: filteredArticles });

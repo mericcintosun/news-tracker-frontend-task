@@ -6,7 +6,6 @@ import NotificationPermission from "@/components/NotificationPermission";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
-
 export default function Home() {
   const fetchLatestNews = async () => {
     const res = await fetch(`/api/news`, {

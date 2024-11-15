@@ -1,9 +1,22 @@
+const articleCache = new Map();
+
 export const filterArticles = (articles) => {
-  return articles.filter(
+  const cacheKey = JSON.stringify(articles);
+
+  if (articleCache.has(cacheKey)) {
+    console.log("Cache kullanıldı");
+    return articleCache.get(cacheKey);
+  }
+
+  const filteredArticles = articles.filter(
     (article) =>
-      article.source && // Kaynağın mevcut olup olmadığını kontrol et
-      article.source.name && // Kaynak isminin mevcut olup olmadığını kontrol et
-      article.source.name !== "[Removed]" && // İstenmeyen kaynakları filtrele
-      article.urlToImage // Resim URL'sinin mevcut olup olmadığını kontrol et
+      article.source &&
+      article.source.name &&
+      article.source.name !== "[Removed]" &&
+      article.urlToImage
   );
+
+  articleCache.set(cacheKey, filteredArticles);
+
+  return filteredArticles;
 };
