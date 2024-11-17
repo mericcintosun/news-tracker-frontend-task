@@ -2,8 +2,9 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import styles from "./SourceNewsList.module.css"; // CSS module import
-
+import styles from "./SourceNewsList.module.css";
+import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 export default function SourceNewsList({ source }) {
   const fetchNews = async () => {
     const params = new URLSearchParams({ sources: source });
@@ -19,10 +20,7 @@ export default function SourceNewsList({ source }) {
     staleTime: 1000 * 60 * 60 * 10,
   });
 
-  if (isLoading)
-    return (
-      <p className={styles.loadingMessage}>{source} haberleri yükleniyor...</p>
-    );
+  if (isLoading) return <LoadingSpinner />;
 
   if (error)
     return (
@@ -37,14 +35,14 @@ export default function SourceNewsList({ source }) {
       <ul className={styles.sourceNewsList}>
         {data.map((article, index) => (
           <li key={index} className={styles.sourceNewsItem}>
-            <a
+            <Link
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.sourceNewsLink}
             >
               {article.title}
-            </a>
+            </Link>
             <p className={styles.sourceNewsDescription}>
               {article.description}
             </p>
@@ -63,9 +61,14 @@ export default function SourceNewsList({ source }) {
             <Image
               src={article.urlToImage}
               alt={article.title}
-              width={200}
-              height={200}
-              className={styles.sourceNewsImage}
+              width={400}
+              height={250}
+              style={{
+                borderRadius: "5px",
+                objectFit: "cover",
+                width: "100%",
+                height: "auto",
+              }}
             />
           </li>
         ))}

@@ -13,7 +13,7 @@ import {
 } from "chart.js";
 import { groupArticlesByHour } from "@/utils/formatDate";
 import { filterArticles } from "@/lib/filterArticles";
-import styles from "./NewsChart.module.css"; // CSS Modülünü import et
+import styles from "./NewsChart.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -34,11 +34,11 @@ const NewsChart = ({ articles }) => {
       {
         label: "Haber Sayısı",
         data: hoursCount,
-        backgroundColor: "rgba(54, 162, 235, 0.8)",
-        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.8)",
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 2,
-        hoverBackgroundColor: "rgba(75, 192, 192, 0.9)",
-        hoverBorderColor: "rgba(75, 192, 192, 1)",
+        hoverBackgroundColor: "rgba(54, 162, 235, 0.9)",
+        hoverBorderColor: "rgba(54, 162, 235, 1)",
       },
     ],
   };
@@ -55,7 +55,7 @@ const NewsChart = ({ articles }) => {
             size: 14,
             family: "'Helvetica Neue', 'Arial', sans-serif",
           },
-          color: "#333",
+          color: "white",
         },
       },
       title: {
@@ -66,7 +66,7 @@ const NewsChart = ({ articles }) => {
           family: "'Helvetica Neue', 'Arial', sans-serif",
           weight: "bold",
         },
-        color: "#333",
+        color: "white",
       },
     },
     scales: {
@@ -76,9 +76,9 @@ const NewsChart = ({ articles }) => {
         },
         ticks: {
           font: {
-            size: 12,
+            size: 10,
           },
-          color: "#666",
+          color: "white",
         },
       },
       y: {
@@ -87,9 +87,9 @@ const NewsChart = ({ articles }) => {
         },
         ticks: {
           font: {
-            size: 12,
+            size: 10,
           },
-          color: "#666",
+          color: "white",
         },
       },
     },
@@ -101,10 +101,7 @@ const NewsChart = ({ articles }) => {
 
   return (
     <div className={styles.newsChartContainer}>
-      {" "}
-      {/* CSS modülünü burada kullan */}
-      <Bar data={data} options={options} className={styles.newsChart} />{" "}
-      {/* CSS modülünü burada kullan */}
+      <Bar data={data} options={options} className={styles.newsChart} />
     </div>
   );
 };

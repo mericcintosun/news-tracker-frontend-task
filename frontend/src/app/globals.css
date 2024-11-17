@@ -1,27 +1,22 @@
 :root {
-  --primary-bg-color: #ffffff;
-  --primary-text-color: #000000;
-  --secondary-bg-color: #f7f7f7;
-  --link-color: #007bff;
-  --hover-link-color: #0056b3;
-  --error-color: #ff0000;
-  --muted-text-color: #6c757d;
-  --border-color: #ccc;
+  --primary-bg-color: #1e1e2f;
+  --secondary-bg-color: #2a2a40;
+
+  --primary-text-color: #eaeaea;
+  --muted-text-color: #a0a0b0;
+
+  --link-color: #4c8bf5;
+  --hover-link-color: #3366cc;
+
+  --error-color: #ff6b6b;
+
+  --border-color: #383850;
+
+  --highlight-color: #f5cb42;
+
+  --secondary-accent-color: #66d9ef;
 }
 
-/* Koyu Tema */
-[data-theme="dark"] {
-  --primary-bg-color: #121212;
-  --primary-text-color: #ffffff;
-  --secondary-bg-color: #1f1f1f;
-  --link-color: #82aaff;
-  --hover-link-color: #5a8dff;
-  --error-color: #ff5555;
-  --muted-text-color: #b0b0b0;
-  --border-color: #444;
-}
-
-/* Global Styles */
 body {
   font-family: "Arial", sans-serif;
   margin: 0;
@@ -30,9 +25,6 @@ body {
   color: var(--primary-text-color);
 }
 
-/* Additional Global Styles */
-
-/* General Styles */
 .news-container {
   padding: 20px;
   max-width: 1200px;
@@ -128,69 +120,18 @@ body {
   text-decoration: underline;
 }
 
-/* Notification Permission */
 .notification-permission {
   margin-bottom: 20px;
 }
 
-/* NewsChart */
 .news-chart {
   margin-bottom: 40px;
 }
 
-/* NewsPoller */
 .news-poller {
   margin-bottom: 30px;
 }
 
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-  .news-container {
-    background-color: var(--dark-primary-bg-color);
-  }
-
-  .headline,
-  .news-content {
-    color: var(--dark-primary-text-color);
-  }
-
-  .subheadline,
-  .news-author,
-  .news-date,
-  .news-source {
-    color: var(--dark-secondary-text-color);
-  }
-
-  .news-item {
-    background-color: var(--dark-secondary-bg-color);
-    border: 1px solid var(--dark-border-color);
-  }
-
-  .news-link {
-    color: var(--dark-link-color);
-  }
-
-  .news-link:hover {
-    color: var(--dark-hover-link-color);
-  }
-
-  .loading-text,
-  .error-text {
-    color: var(--dark-error-color);
-  }
-
-  .news-description {
-    color: var(--dark-muted-text-color);
-  }
-
-  .continue-reading {
-    color: var(--dark-hover-link-color);
-  }
-}
-
-/* basic.css */
-
-/* Global reset ve varsayılan ayarlar */
 *,
 *::before,
 *::after {
@@ -232,7 +173,6 @@ button {
   font: inherit;
 }
 
-/* Flexbox container düzeni */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -243,7 +183,6 @@ section {
   margin-bottom: 20px;
 }
 
-/* Genel başlık stilleri */
 h1,
 h2,
 h3 {
@@ -265,13 +204,11 @@ h3 {
   margin-bottom: 16px;
 }
 
-/* Butonlar */
 button {
   padding: 10px 20px;
   border-radius: 5px;
 }
 
-/* Formlar */
 input,
 textarea,
 select {
@@ -289,7 +226,6 @@ select:focus {
   outline: none;
 }
 
-/* Kartlar ve kutular */
 .card {
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -312,14 +248,12 @@ select:focus {
   margin-top: 10px;
 }
 
-/* Footer */
 footer {
   padding: 20px 0;
   text-align: center;
   margin-top: auto;
 }
 
-/* Mobil uyumlu tasarım */
 @media (max-width: 768px) {
   .container {
     padding: 10px;

@@ -1,12 +1,36 @@
-/* NewsChart.module.css */
 .newsChartContainer {
+  width: 100%;
   max-width: 800px;
-  height: 400px;
+  height: auto; 
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box; 
 }
 
 .newsChart {
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 768px) {
+  .newsChartContainer {
+    max-width: 600px; 
+    padding: 15px;
+  }
+
+  .newsChart {
+    width: 100%;
+    height: 300px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .newsChartContainer {
+    max-width: 90%; 
+    padding: 10px;
+  }
+
+  .newsChart {
+    height: 250px; 
+  }
 }

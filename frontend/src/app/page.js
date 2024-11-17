@@ -1,11 +1,12 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import NewsChart from "@/components/NewsChart/NewsChart";
 import NewsPoller from "@/components/NewsPoller/NewsPoller";
 import NotificationPermission from "@/components/NotificationPermission/NotificationPermission";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   const fetchLatestNews = async () => {
     const res = await fetch(`/api/news`, {
@@ -28,49 +29,97 @@ export default function Home() {
 
   return (
     <>
-      <div className="news-container padding-all flex-center">
-        <NotificationPermission className="notification-permission padding-all rounded shadow-md" />
+      <div
+        className="news-container"
+        style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}
+      >
+        <NotificationPermission
+          style={{
+            padding: "15px",
+            borderRadius: "5px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        />
 
         {data && (
           <NewsChart
             articles={data}
-            className="news-chart rounded shadow-md padding-all max-width"
+            style={{
+              padding: "15px",
+              borderRadius: "5px",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              maxWidth: "100%",
+            }}
           />
         )}
 
-        <h1 className="headline text-center">Yeni Haberler</h1>
+        <h1 style={{ textAlign: "center", fontSize: "2rem", margin: "20px 0" }}>
+          Yeni Haberler
+        </h1>
 
-        <NewsPoller className="news-poller rounded shadow-md padding-all" />
+        <NewsPoller
+          style={{
+            padding: "15px",
+            borderRadius: "5px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        />
 
-        <h2 className="subheadline text-center">En Son Haberler</h2>
+        <h2
+          style={{ textAlign: "center", fontSize: "1.5rem", margin: "20px 0" }}
+        >
+          En Son Haberler
+        </h2>
 
-        {isLoading && <p className="loading-text text-center">Yükleniyor...</p>}
+        {isLoading && <LoadingSpinner />}
         {error && (
-          <p className="error-text text-center">
+          <p style={{ textAlign: "center", fontSize: "1rem" }}>
             Bir hata oluştu: {error.message}
           </p>
         )}
 
         {data && (
-          <ul className="news-list flex-column gap-16">
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "0",
+            }}
+          >
             {data.map((article, index) => (
               <li
                 key={index}
-                className="news-item flex-row gap-16 rounded-sm shadow-sm padding-all"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  padding: "15px",
+                  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+                }}
               >
-                <a
+                <Link
                   href={article.url}
+                  className="news-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="news-link text-primary"
+                  style={{
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
                 >
                   {article.title}
-                </a>
-                <p className="news-description text-muted">
+                </Link>
+                <p className="news-description" style={{ fontSize: "1rem", lineHeight: "1.5" }}>
                   {article.description}
                 </p>
-                <p className="news-author text-muted">{article.author}</p>
-                <p className="news-date text-muted">
+                <p className="news-author" style={{ fontSize: "0.9rem" }}>
+                  Yazar: {article.author || "Bilinmiyor"}
+                </p>
+                <p className="news-date" style={{ fontSize: "0.9rem" }}>
                   Yayınlanma Tarihi:{" "}
                   {new Date(article.publishedAt).toLocaleDateString("tr-TR", {
                     day: "2-digit",
@@ -80,24 +129,37 @@ export default function Home() {
                     minute: "2-digit",
                   })}
                 </p>
-                <p className="news-source text-muted">{article.source.name}</p>
-                <Image
-                  src={article.urlToImage}
-                  alt={article.title}
-                  width={200}
-                  height={200}
-                  className="news-image rounded-sm"
-                />
-                <p className="news-content text-muted">
+                <p className="news-source" style={{ fontSize: "0.9rem" }}>
+                  Kaynak: {article.source.name}
+                </p>
+                {article.urlToImage && (
+                  <Image
+                    src={article.urlToImage}
+                    alt={article.title}
+                    width={400}
+                    height={250}
+                    style={{
+                      borderRadius: "5px",
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "auto",
+                    }}
+                  />
+                )}
+                <p style={{ fontSize: "1rem", lineHeight: "1.5" }}>
                   {article.content?.split(" [+")[0]}{" "}
-                  <a
+                  <Link
+                  className="news-link"
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="continue-reading text-primary"
+                    style={{
+                      textDecoration: "none",
+                      fontWeight: "bold",
+                    }}
                   >
                     Devamını oku
-                  </a>
+                  </Link>
                 </p>
               </li>
             ))}

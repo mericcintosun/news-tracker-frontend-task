@@ -24,7 +24,7 @@ const NewsPoller = () => {
 
     const fetchNews = async () => {
       try {
-        const res = await fetch("/api/news?category=technology");
+        const res = await fetch("/api/news");
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -65,7 +65,7 @@ const NewsPoller = () => {
 
     fetchNews();
 
-    intervalRef.current = setInterval(fetchNews, 15 * 60 * 1000);
+    intervalRef.current = setInterval(fetchNews, 30 * 1000);
 
     return () => {
       if (intervalRef.current) {

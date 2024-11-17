@@ -4,7 +4,9 @@ import { useState } from "react";
 import NewsChart from "@/components/NewsChart/NewsChart";
 import { useQuery } from "@tanstack/react-query";
 import SourceNewsList from "@/components/SourceNewsList/SourceNewsList";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import "./SourceNewsPage.css";
+
 const sources = [
   "bbc-news",
   "cnn",
@@ -38,32 +40,87 @@ export default function SourceNewsPage() {
   });
 
   return (
-    <div className="source-news-container flex-center padding-all">
-      {isLoading && <p className="loading-text text-center">Yükleniyor...</p>}
+    <div
+      className="source-news-container"
+      style={{
+        padding: "20px",
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      {isLoading && <LoadingSpinner />}
       {error && (
-        <p className="error-text text-center">
+        <p
+          style={{
+            textAlign: "center",
+            color: "red",
+            fontSize: "1rem",
+            margin: "10px 0",
+          }}
+        >
           Bir hata oluştu: {error.message}
         </p>
       )}
       {data && (
         <NewsChart
           articles={data}
-          className="source-news-chart rounded shadow-md padding-all max-width"
+          style={{
+            padding: "15px",
+            borderRadius: "5px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            maxWidth: "100%",
+          }}
         />
       )}
 
-      <h1 className="source-news-heading text-center">
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: "2rem",
+          margin: "20px 0",
+        }}
+      >
         Kaynağa Göre En Son Haberler
       </h1>
 
-      <nav className="navbar flex-row gap-16 padding-vertical">
-        <ul className="navbar-list flex-row gap-16">
+      <nav
+        className="navbar"
+        style={{
+          width: "100%",
+          marginBottom: "20px",
+          display: "flex",
+          justifyContent: "center",
+          gap: "10px",
+          flexWrap: "wrap",
+        }}
+      >
+        <ul
+          className="navbar-list"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            listStyle: "none",
+            padding: "0",
+            gap: "10px",
+          }}
+        >
           {sources.map((source) => (
             <li
               key={source}
-              className={`navbar-item rounded-sm shadow-sm padding-horizontal ${
-                activeSource === source ? "active text-primary" : "text-muted"
-              }`}
+              className={`navbar-item`}
+              style={{
+                padding: "10px 15px",
+                borderRadius: "5px",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+                cursor: "pointer",
+                backgroundColor:
+                  activeSource === source ? "#0070f3" : "transparent",
+                color: activeSource === source ? "#fff" : "#555",
+                fontWeight: activeSource === source ? "bold" : "normal",
+              }}
               onClick={() => setActiveSource(source)}
             >
               {source
@@ -77,7 +134,15 @@ export default function SourceNewsPage() {
 
       <SourceNewsList
         source={activeSource}
-        className="source-news-list flex-row-wrap padding-all"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          justifyContent: "center",
+          padding: "20px",
+          width: "100%",
+          maxWidth: "1200px",
+        }}
       />
     </div>
   );

@@ -3,9 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import styles from "./CategoryNewsList.module.css";
-
+import Link from "next/link";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 export default function CategoryNewsList({ category }) {
-  // API'den haberleri çekme fonksiyonu
   const fetchCategoryNews = async () => {
     const params = new URLSearchParams({ category });
     const res = await fetch(`/api/news?${params.toString()}`, {
@@ -20,17 +20,14 @@ export default function CategoryNewsList({ category }) {
     return data.articles;
   };
 
-  // React Query ile veri çekme
   const { data, error, isLoading } = useQuery({
     queryKey: ["news", category],
     queryFn: fetchCategoryNews,
     staleTime: 1000 * 60 * 60 * 10,
   });
 
-  // Yükleme durumu
-  if (isLoading) return <p>{category} haberleri yükleniyor...</p>;
+  if (isLoading) return <LoadingSpinner />;
 
-  // Hata durumu
   if (error) return <p>{error.message}</p>;
 
   return (
@@ -42,14 +39,14 @@ export default function CategoryNewsList({ category }) {
       <ul className={styles.articleList}>
         {data.map((article) => (
           <li key={article.url} className={styles.articleItem}>
-            <a
+            <Link
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.articleLink}
             >
               {article.title}
-            </a>
+            </Link>
             <p className={styles.articleDescription}>{article.description}</p>
             <p className={styles.articleAuthor}>
               Yazar: {article.author || "Bilinmiyor"}
@@ -68,15 +65,18 @@ export default function CategoryNewsList({ category }) {
               Kaynak: {article.source.name}
             </p>
 
-            {/* Resim varsa, resmin boyutlarını esnek yapıyoruz */}
             {article.urlToImage && (
               <Image
                 src={article.urlToImage}
                 alt={article.title}
-                width={300}
-                height={200}
-                layout="responsive"
-                className={styles.articleImage}
+                width={400}
+                height={250}
+                style={{
+                  borderRadius: "5px",
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "auto",
+                }}
               />
             )}
           </li>
