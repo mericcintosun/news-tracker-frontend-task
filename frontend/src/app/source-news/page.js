@@ -1,5 +1,6 @@
 "use client";
 
+// Import necessary dependencies and components
 import { useState } from "react";
 import NewsChart from "@/components/NewsChart/NewsChart";
 import { useQuery } from "@tanstack/react-query";
@@ -7,6 +8,7 @@ import SourceNewsList from "@/components/SourceNewsList/SourceNewsList";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import "./SourceNewsPage.css";
 
+// List of news sources used for filtering articles
 const sources = [
   "bbc-news",
   "cnn",
@@ -20,23 +22,27 @@ const sources = [
   "the-washington-post",
 ];
 
+// Fetch news articles from the server based on the selected source
 const fetchSourceNews = async (source) => {
   const res = await fetch(`/api/news?sources=${source}`);
   if (!res.ok) {
-    throw new Error("Veri alınamadı");
+    // Throw an error if the response is not successful
+    throw new Error("Failed to fetch data");
   }
   const data = await res.json();
   return data.articles;
 };
 
 export default function SourceNewsPage() {
+  // State to track the currently selected news source
   const [activeSource, setActiveSource] = useState(sources[0]);
 
+  // Use React Query to fetch and cache news articles
   const { data, isLoading, error } = useQuery({
     queryKey: ["news", activeSource],
     queryFn: () => fetchSourceNews(activeSource),
-    staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5, // Cache validity set to 5 minutes
+    refetchOnWindowFocus: false, // Disable automatic refetching when the window regains focus
   });
 
   return (
@@ -51,7 +57,10 @@ export default function SourceNewsPage() {
         alignItems: "center",
       }}
     >
+      {/* Show loading spinner while fetching data */}
       {isLoading && <LoadingSpinner />}
+
+      {/* Display error message if the fetch fails */}
       {error && (
         <p
           style={{
@@ -61,9 +70,11 @@ export default function SourceNewsPage() {
             margin: "10px 0",
           }}
         >
-          Bir hata oluştu: {error.message}
+          An error occurred: {error.message}
         </p>
       )}
+
+      {/* Render the NewsChart component if data is successfully fetched */}
       {data && (
         <NewsChart
           articles={data}
@@ -76,6 +87,7 @@ export default function SourceNewsPage() {
         />
       )}
 
+      {/* Page title */}
       <h1
         style={{
           textAlign: "center",
@@ -83,9 +95,10 @@ export default function SourceNewsPage() {
           margin: "20px 0",
         }}
       >
-        Kaynağa Göre En Son Haberler
+        Latest News by Source
       </h1>
 
+      {/* Navigation bar for selecting news sources */}
       <nav
         className="navbar"
         style={{
@@ -123,6 +136,7 @@ export default function SourceNewsPage() {
               }}
               onClick={() => setActiveSource(source)}
             >
+              {/* Format the source name for better readability */}
               {source
                 .split("-")
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -132,6 +146,7 @@ export default function SourceNewsPage() {
         </ul>
       </nav>
 
+      {/* Render the list of articles for the selected source */}
       <SourceNewsList
         source={activeSource}
         style={{

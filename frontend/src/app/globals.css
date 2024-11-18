@@ -1,143 +1,149 @@
 :root {
-  --primary-bg-color: #1e1e2f;
-  --secondary-bg-color: #2a2a40;
+  /* Color variables for the theme */
+  --primary-bg-color: #1e1e2f; /* Dark background color */
+  --secondary-bg-color: #2a2a40; /* Lighter background color */
 
-  --primary-text-color: #eaeaea;
-  --muted-text-color: #a0a0b0;
+  --primary-text-color: #eaeaea; /* Main text color */
+  --muted-text-color: #a0a0b0; /* Muted or secondary text color */
 
-  --link-color: #4c8bf5;
-  --hover-link-color: #3366cc;
+  --link-color: #4c8bf5; /* Color for links */
+  --hover-link-color: #3366cc; /* Hover state color for links */
 
-  --error-color: #ff6b6b;
+  --error-color: #ff6b6b; /* Error message color */
 
-  --border-color: #383850;
+  --border-color: #383850; /* Border color */
 
-  --highlight-color: #f5cb42;
+  --highlight-color: #f5cb42; /* Highlight color for important items */
 
-  --secondary-accent-color: #66d9ef;
+  --secondary-accent-color: #66d9ef; /* Accent color for secondary elements */
 }
 
 body {
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--primary-bg-color);
-  color: var(--primary-text-color);
+  background-color: var(--primary-bg-color); /* Set background color */
+  color: var(--primary-text-color); /* Set text color */
 }
 
 .news-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: var(--primary-bg-color);
+  background-color: var(
+    --primary-bg-color
+  ); /* Background color for news container */
 }
 
 .headline {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: var(--primary-text-color);
+  color: var(--primary-text-color); /* Main headline text color */
 }
 
 .subheadline {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  color: var(--secondary-text-color);
+  color: var(--secondary-text-color); /* Subheadline text color */
 }
 
 .loading-text,
 .error-text {
   font-size: 1.2rem;
-  color: var(--error-color);
+  color: var(--error-color); /* Color for error or loading messages */
 }
 
 .news-list {
-  list-style-type: none;
+  list-style-type: none; /* Remove bullet points */
   padding: 0;
 }
 
 .news-item {
-  background-color: var(--secondary-bg-color);
+  background-color: var(
+    --secondary-bg-color
+  ); /* Background color for each news item */
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
 }
 
 .news-item:hover {
-  transform: scale(1.02);
+  transform: scale(1.02); /* Slight scale effect on hover */
 }
 
 .news-link {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--link-color);
-  text-decoration: none;
-  transition: color 0.3s;
+  color: var(--link-color); /* Color for links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
 .news-link:hover {
-  color: var(--hover-link-color);
+  color: var(--hover-link-color); /* Hover state color for links */
 }
 
 .news-description {
   font-size: 1rem;
-  color: var(--muted-text-color);
+  color: var(--muted-text-color); /* Color for the description text */
   margin-top: 10px;
 }
 
 .news-author,
 .news-date {
   font-size: 0.9rem;
-  color: var(--muted-text-color);
+  color: var(--muted-text-color); /* Color for author and date */
   margin-top: 5px;
 }
 
 .news-source {
   font-size: 0.9rem;
-  color: var(--link-color);
+  color: var(--link-color); /* Color for news source */
   margin-top: 5px;
 }
 
 .news-image {
   margin-top: 20px;
-  border-radius: 8px;
+  border-radius: 8px; /* Round corners for images */
 }
 
 .news-content {
   margin-top: 20px;
   font-size: 1rem;
-  color: var(--primary-text-color);
+  color: var(--primary-text-color); /* Content text color */
 }
 
 .continue-reading {
-  color: var(--hover-link-color);
-  text-decoration: none;
+  color: var(--hover-link-color); /* Color for 'continue reading' link */
+  text-decoration: none; /* Remove underline */
 }
 
 .continue-reading:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Underline on hover for 'continue reading' */
 }
 
 .notification-permission {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Margin for notification permission section */
 }
 
 .news-chart {
-  margin-bottom: 40px;
+  margin-bottom: 40px; /* Margin for the news chart section */
 }
 
 .news-poller {
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* Margin for the news poller section */
 }
 
+/* Global reset for margin and padding */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ensures consistent box model */
 }
 
 body {
@@ -146,15 +152,15 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Column layout */
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none; /* Remove underline from links */
 }
 
 ul {
-  list-style: none;
+  list-style: none; /* Remove bullet points from lists */
 }
 
 h1,
@@ -164,13 +170,13 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-weight: normal;
+  font-weight: normal; /* Reset heading margin and font weight */
 }
 
 button {
-  cursor: pointer;
+  cursor: pointer; /* Cursor style for buttons */
   border: none;
-  font: inherit;
+  font: inherit; /* Inherit font style */
 }
 
 .container {
@@ -180,33 +186,33 @@ button {
 }
 
 section {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Margin for sections */
 }
 
 h1,
 h2,
 h3 {
-  font-weight: bold;
+  font-weight: bold; /* Bold for main headings */
 }
 
 h1 {
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Margin below h1 */
 }
 
 h2 {
   font-size: 28px;
-  margin-bottom: 18px;
+  margin-bottom: 18px; /* Margin below h2 */
 }
 
 h3 {
   font-size: 22px;
-  margin-bottom: 16px;
+  margin-bottom: 16px; /* Margin below h3 */
 }
 
 button {
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 5px; /* Rounded corners for buttons */
 }
 
 input,
@@ -215,7 +221,7 @@ select {
   font-size: 16px;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 5px; /* Rounded corners for inputs */
   margin-bottom: 15px;
   width: 100%;
 }
@@ -223,14 +229,14 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: none;
+  outline: none; /* Remove outline on focus */
 }
 
 .card {
   border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Card shadow for depth */
   padding: 20px;
-  margin: 15px 0;
+  margin: 15px 0; /* Margin between cards */
 }
 
 .card-header {
@@ -240,34 +246,33 @@ select:focus {
 }
 
 .card-body {
-  font-size: 16px;
+  font-size: 16px; /* Body text size in the card */
 }
 
 .card-footer {
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 10px; /* Margin above card footer */
 }
 
-
-
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .container {
-    padding: 10px;
+    padding: 10px; /* Less padding on smaller screens */
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 28px; /* Smaller font size for h1 */
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 22px; /* Smaller font size for h2 */
   }
 
   h3 {
-    font-size: 18px;
+    font-size: 18px; /* Smaller font size for h3 */
   }
 
   button {
-    padding: 8px 16px;
+    padding: 8px 16px; /* Adjust button padding */
   }
 }

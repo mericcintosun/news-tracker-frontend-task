@@ -1,5 +1,6 @@
 "use client";
 
+// Import necessary dependencies and components
 import { useState } from "react";
 import CategoryNewsList from "@/components/CategoryNewsList/CategoryNewsList";
 import NewsChart from "@/components/NewsChart/NewsChart";
@@ -7,25 +8,29 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import "./CategoryNewsPage.css";
 
+// Define the categories for news filtering
 const categories = ["technology", "general", "business", "sports"];
 
+// Fetch news articles for the selected category
 const fetchCategoryNews = async (category) => {
   const res = await fetch(`/api/news?category=${category}`);
   if (!res.ok) {
-    throw new Error("Veri alınamadı");
+    throw new Error("Failed to fetch data");
   }
   const data = await res.json();
   return data.articles;
 };
 
 export default function CategoryNewsPage() {
+  // Track the active category state
   const [activeCategory, setActiveCategory] = useState(categories[0]);
 
+  // Fetch the news data using React Query
   const { data, isLoading, error } = useQuery({
     queryKey: ["news", activeCategory],
     queryFn: () => fetchCategoryNews(activeCategory),
-    staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5, // Cache the data for 5 minutes
+    refetchOnWindowFocus: false, // Disable automatic refetching on window focus
   });
 
   return (
@@ -40,6 +45,7 @@ export default function CategoryNewsPage() {
         alignItems: "center",
       }}
     >
+      {/* Page title */}
       <h1
         className="category-news-heading"
         style={{
@@ -48,9 +54,10 @@ export default function CategoryNewsPage() {
           marginBottom: "20px",
         }}
       >
-        Kategoriye Göre En Son Haberler
+        Latest News by Category
       </h1>
 
+      {/* Navigation bar for selecting news categories */}
       <nav
         className="navbar"
         style={{
@@ -86,15 +93,19 @@ export default function CategoryNewsPage() {
                 color: activeCategory === category ? "#fff" : "#555",
                 fontWeight: activeCategory === category ? "bold" : "normal",
               }}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => setActiveCategory(category)} // Set the active category on click
             >
+              {/* Capitalize category name for better readability */}
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </li>
           ))}
         </ul>
       </nav>
 
+      {/* Display loading spinner while data is being fetched */}
       {isLoading && <LoadingSpinner />}
+
+      {/* Display error message if fetching fails */}
       {error && (
         <p
           className="error-text"
@@ -105,9 +116,11 @@ export default function CategoryNewsPage() {
             margin: "10px 0",
           }}
         >
-          Bir hata oluştu: {error.message}
+          An error occurred: {error.message}
         </p>
       )}
+
+      {/* Display news chart if data is successfully fetched */}
       {data && (
         <NewsChart
           articles={data}
@@ -120,6 +133,7 @@ export default function CategoryNewsPage() {
         />
       )}
 
+      {/* Display a list of news articles for the selected category */}
       <CategoryNewsList
         category={activeCategory}
         style={{
