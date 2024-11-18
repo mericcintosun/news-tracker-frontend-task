@@ -248,11 +248,7 @@ select:focus {
   margin-top: 10px;
 }
 
-footer {
-  padding: 20px 0;
-  text-align: center;
-  margin-top: auto;
-}
+
 
 @media (max-width: 768px) {
   .container {

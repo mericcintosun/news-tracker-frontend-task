@@ -1,5 +1,5 @@
 .siteHeader {
-  background-color: var(--primary-bg-color); 
+  background-color: var(--primary-bg-color);
   padding: 20px;
 }
 
@@ -14,6 +14,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .navbarItem {
@@ -29,6 +31,50 @@
 
 .navbarLink:hover {
   text-decoration: underline;
-  color: var(--hover-link-color); 
+  color: var(--hover-link-color);
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+
+  .navbarList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbarItem {
+    margin: 5px 0;
+  }
+
+  .navbarLink {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .siteHeader {
+    padding: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbarList {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbarItem {
+    margin: 10px 0;
+  }
+
+  .navbarLink {
+    font-size: 0.9rem;
+  }
+}
