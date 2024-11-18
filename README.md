@@ -46,7 +46,7 @@ Gerçek Zamanlı Haber Takip Uygulaması:
 - **Grafikler**: Chart.js
 - **Veri Çekme**: Axios & Tanstack Query
 - **Stil**: Custom CSS
-- **Bildirimler**: Polling
+- **Bildirimler**: Polling ve Web Notifications API
 - **Güvenlik**: .env Dosyası, Hata Yönetimi
 
 ---
